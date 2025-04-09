@@ -1,0 +1,46 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract GovernmentDirectory {
+    enum Level { Federal, State, Local }
+
+    struct Official {
+        string name;
+        string office;
+        string ministry;
+        Level level;
+        string region;
+        string contactInfo;
+        uint256 startDate;
+        uint256 endDate;
+        bool active;
+    }
+
+    mapping(uint256 => Official) public officials;
+    uint256 public officialCount;
+
+    function addOfficial(
+        string memory _name,
+        string memory _office,
+        string memory _ministry,
+        Level         _level,
+        string memory _region,
+        string memory _contactInfo,
+        uint256 _startDate,
+        uint256 _endDate
+    ) public {
+        officials[officialCount] = Official(
+            _name,
+            _office,
+            _ministry,
+            _level,
+            _region,
+            _contactInfo,
+            _startDate,
+            _endDate,
+            true
+        );
+        officialCount++;
+    }
+} 
+
